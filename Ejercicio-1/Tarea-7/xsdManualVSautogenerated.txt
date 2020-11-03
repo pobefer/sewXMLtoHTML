@@ -1,0 +1,3 @@
+La principal diferencia es la definicion de tipos, en el manual se permite especificar los tipos que decidas mientras que en el autogenerado todos los tipos se establecen como string
+
+Otra diferencia importante es la posibilidad de establecer las apariciones maximas y minimas de un documento.

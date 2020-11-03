@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="rutas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="3" maxOccurs="unbounded" ref="RutaTuristica" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RutaTuristica">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Duracion" />
+        <xs:element ref="Descripcion" />
+        <xs:element ref="Recomendaciones" />
+        <xs:element ref="Localizacion" />
+        <xs:element ref="Referencias" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="coordenadasRuta" />
+        <xs:element ref="Hitos" />
+      </xs:sequence>
+      <xs:attribute name="nombre" type="xs:string" use="required" />
+      <xs:attribute name="tipo" type="xs:string" use="required" />
+      <xs:attribute name="dificaultad" type="xs:string" use="required" />
+      <xs:attribute name="puntuacion" type="xs:string" use="required" />
+      <xs:attribute name="Agencia" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Duracion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="fecha" />
+        <xs:element ref="hora" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tiempo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Recomendaciones">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="10" ref="recomendacion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Localizacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Ciudad" />
+        <xs:element ref="direccion" />
+        <xs:element ref="coordenadas" />
+      </xs:sequence>
+      <xs:attribute name="pais" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Coordenadas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="latitud" />
+        <xs:element ref="longitud" />
+        <xs:element ref="altura" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Referencias">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="referencia" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="coordenadasRuta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="unbounded" ref="coordenadas" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="coordenadas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="altura" />
+      </xs:sequence>
+      <xs:attribute name="lat" type="xs:decimal" use="required" />
+      <xs:attribute name="lon" type="xs:decimal" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Hitos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="3" maxOccurs="unbounded" ref="Hito" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Hito">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Descripcion" />
+        <xs:element ref="Localizacion" />
+        <xs:element ref="distancia-hito-anterior" />
+        <xs:element ref="Galeria-img" />
+        <xs:element ref="Galeria-video" />
+      </xs:sequence>
+      <xs:attribute name="nombre" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Galeria-video">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="10" ref="video" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Galeria-img">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="10" ref="img" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fecha">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="type-date" type="xs:string" use="optional" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hora">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="type-hour" type="xs:string" use="required" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tiempo">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="unidad" type="xs:string" use="required" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Descripcion" type="xs:string" />
+  <xs:element name="recomendacion" type="xs:string" />
+  <xs:element name="Ciudad" type="xs:string" />
+  <xs:element name="direccion" type="xs:string" />
+  <xs:element name="latitud" type="xs:decimal" />
+  <xs:element name="longitud" type="xs:decimal" />
+  <xs:element name="altura" type="xs:decimal" />
+  <xs:element name="referencia" type="xs:string" />
+  <xs:element name="distancia-hito-anterior">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="unidad" type="xs:string" use="required" />
+          <xs:attribute name="tiempo" type="xs:decimal" use="required" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="img">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="type" type="xs:string" use="required" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="video">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="type" type="xs:string" use="required" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
